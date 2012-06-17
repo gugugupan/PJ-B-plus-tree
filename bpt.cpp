@@ -60,8 +60,40 @@ void insert_in_node( bpt_node *node , int key , void *value ) ;
 void split( bpt_node *node )
 {
     bpt_node *nodd = new_bpt_node() ;
-    if ( node -> is_leaf ) node -> pointer[ 0 ] = nodd ;
+    if ( node -> is_leaf )
+    {
+        node -> pointer[ 0 ] = nodd ;
+        nodd -> is_leaf = true ;
+    }
 
+    int mid_key = node -> key[ M / 2 ] ;
+
+    node -> key_num = M / 2 ;
+
+    nodd -> key_num = M - M / 2 - 1 ;
+    for ( int i = 0 ; i < nodd -> key_num ; i ++ )
+    {
+        nodd -> key[ i ] = node -> key[ i + ( M / 2 + 1 ) ] ;
+        nodd -> pointer[ i ] = node -> pointer[ i + ( M / 2 + 1 ) ] ;
+    }
+    nodd -> pointer[ nodd -> key_num + 1 ] = node -> pointer[ M + 1 ] ;
+
+    if ( node -> is_root )
+    {
+        node -> is_root = false ;
+        root = new_bpt_node() ;
+        root -> is_root = true ;
+        root -> key[ 0 ] = mid_key ;
+        root -> pointer[ 0 ] = node ;
+        root -> pointer[ 1 ] = nodd ;
+        root -> key_num = 1 ;
+
+        node -> father = nodd -> father = root ;
+    } else
+    {
+        nodd -> father = node -> father ;
+        insert_in_node( ( bpt_node * ) node -> father , mid_key , ( void *) nodd ) ;
+    }
 }
 
 void insert_in_node( bpt_node *node , int key , void *value )

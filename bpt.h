@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-const int M = 4 ;
+const int M = 3 ;
 
 /*
 struct data_node
