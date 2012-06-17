@@ -12,3 +12,6 @@
 *.a
 
 *.cbp
+*.depend
+*.layout
+bin*
