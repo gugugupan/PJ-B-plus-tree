@@ -127,12 +127,41 @@ void insert_in_node( bpt_node *node , int key , void *value )
         split( node ) ;
 }
 
+void delete_in_node( bpt_node *node , int key )
+{
+    int x = 0 ;
+    while ( key != node -> key[ x ] ) x ++ ;
+    for ( int i = x ; i < node -> key_num - 1 ; i ++ )
+        node -> key[ i ] = node -> key[ i + 1 ] ;
+    for ( int i = x + 1 ; i < node -> key_num ; i ++ )
+        node -> pointer[ i ] = node -> pointer[ i + 1 ] ;
+    node -> key_num -- ;
+}
+
 bool insert_in_bpt( int key , void *value )
 {
     bpt_node *leaf = find_leaf( key ) ;
-    for ( int i = 0 ; i < leaf -> key_num - 1 ; i ++ )
+    for ( int i = 0 ; i < leaf -> key_num ; i ++ )
         if ( key == leaf -> key[ i ] )
             return false ;
     insert_in_node( leaf , key , value ) ;
     return true ;
+}
+
+bool delete_in_bpt( int key )
+{
+    bpt_node *leaf = find_leaf( key ) ;
+    for ( int i = 0 ; i < leaf -> key_num ; i ++ )
+        if ( key == leaf -> key[ i ] )
+            delete_in_node( leaf , key ) ;
+    return false ;
+}
+
+char *query_in_bpt( int key )
+{
+    bpt_node *leaf = find_leaf( key ) ;
+    for ( int i = 0 ; i < leaf -> key_num ; i ++ )
+        if ( key == leaf -> key[ i ] )
+            return ( char * ) leaf -> pointer[ i + 1 ] ;
+    return NULL ;
 }

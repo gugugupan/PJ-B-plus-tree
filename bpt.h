@@ -29,6 +29,8 @@ struct bpt_node
 extern int node_count ;
 extern void initial_bpt() ;
 extern bool insert_in_bpt( int key , void *value ) ;
+extern bool delete_in_bpt( int key ) ;
+extern char *query_in_bpt( int key ) ;
 
 
 #endif
