@@ -153,7 +153,10 @@ bool delete_in_bpt( int key )
     bpt_node *leaf = find_leaf( key ) ;
     for ( int i = 0 ; i < leaf -> key_num ; i ++ )
         if ( key == leaf -> key[ i ] )
+        {
             delete_in_node( leaf , key ) ;
+            return true ;
+        }
     return false ;
 }
 
