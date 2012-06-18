@@ -28,7 +28,7 @@ struct bpt_node
 
 extern int node_count ;
 extern void initial_bpt() ;
-extern void insert_in_bpt( int key , void *value ) ;
+extern bool insert_in_bpt( int key , void *value ) ;
 
 
 #endif

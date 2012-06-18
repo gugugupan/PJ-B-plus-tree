@@ -13,6 +13,6 @@
 
 *.cbp
 *.depend
-*.layout
+*.layout*
 bin*
 test

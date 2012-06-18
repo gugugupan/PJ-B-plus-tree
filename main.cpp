@@ -23,12 +23,14 @@ int main()
 
     while ( fscanf( fp , "%d%s" ,&f_num , f_value ) != EOF )
     {
-        cout << f_num << ' ' << f_value << "OK!" << endl;
         char *tmp_c = ( char * ) new char[ strlen( f_value ) + 1 ] ;
         strcpy( tmp_c , f_value ) ;
-        insert_in_bpt( f_num , tmp_c ) ;
-
-        insert_count ++ ;
+        if ( insert_in_bpt( f_num , tmp_c ) )
+        {
+            printf( "Insert %d %s OK!\n" , f_num , tmp_c ) ;
+            insert_count ++ ;
+        } else
+            printf( "Ignore %d %s\n" , f_num , tmp_c ) ;
     }
     fclose( fp ) ;
 

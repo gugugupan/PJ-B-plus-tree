@@ -127,8 +127,12 @@ void insert_in_node( bpt_node *node , int key , void *value )
         split( node ) ;
 }
 
-void insert_in_bpt( int key , void *value )
+bool insert_in_bpt( int key , void *value )
 {
     bpt_node *leaf = find_leaf( key ) ;
+    for ( int i = 0 ; i < leaf -> key_num - 1 ; i ++ )
+        if ( key == leaf -> key[ i ] )
+            return false ;
     insert_in_node( leaf , key , value ) ;
+    return true ;
 }
