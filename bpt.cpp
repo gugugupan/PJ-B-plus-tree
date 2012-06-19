@@ -6,6 +6,17 @@ using namespace std;
 bpt_node *root ;
 //data_node *data ;
 int node_count ;
+int splite_count ;
+
+void initial_bpt()
+{
+    root = new_bpt_node() ;
+    root -> is_root = true ;
+    root -> is_leaf = true ;
+    node_count = 0 ;
+    splite_count = 0 ;
+    //data = NULL ;
+}
 
 bpt_node *new_bpt_node()
 {
@@ -28,17 +39,7 @@ data_node *new_data_node( int key , char *value )
     p -> next = NULL ;
     return p ;
 }
-*/
-void initial_bpt()
-{
-    root = new_bpt_node() ;
-    root -> is_root = true ;
-    root -> is_leaf = true ;
-    node_count = 0 ;
-    //data = NULL ;
-}
 
-/*
 void insert_data( data_node *father , data_node *data )
 {
     data -> next = father -> next ;
@@ -65,6 +66,7 @@ void insert_in_node( bpt_node *node , int key , void *value ) ;
 
 void split( bpt_node *node )
 {
+    splite_count ++ ;
     //cout << endl << "split!:" << node -> key_num << ' ' << node -> key[ 0 ] << ' ' << node -> key[ 1 ] << ' ' << node -> key[ 2 ] << endl;
     bpt_node *nodd = new_bpt_node() ;
     int mid_key = node -> key[ M / 2 ] ;

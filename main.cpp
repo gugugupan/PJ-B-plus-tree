@@ -45,6 +45,7 @@ int main()
     printf( "B plus tree build OK.\n" ) ;
     printf( "node_cout is : %d\n" , node_count ) ;
     printf( "insert_count is : %d\n" , insert_count ) ;
+    printf( "splite_count is : %d\n" , splite_count ) ;
 
     while ( 1 )
     {
@@ -57,10 +58,10 @@ int main()
             strcpy( f_value , tmp_c ) ;
             if ( insert_in_bpt( f_num , f_value ) )
             {
-                printf( "Insert %d %s OK!\n" , f_num , f_value ) ;
+                //printf( "Insert %d %s OK!\n" , f_num , f_value ) ;
                 insert_count ++ ;
             } else
-                printf( "Ignore %d %s\n" , f_num , f_value ) ;
+                //printf( "Ignore %d %s\n" , f_num , f_value ) ;
 
         } else
         if ( strcmp( tmp_c , "delete" ) == 0 )
