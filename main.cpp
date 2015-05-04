@@ -60,7 +60,7 @@ int main()
             {
                 //printf( "Insert %d %s OK!\n" , f_num , f_value ) ;
                 insert_count ++ ;
-            } else
+            } //else
                 //printf( "Ignore %d %s\n" , f_num , f_value ) ;
 
         } else
